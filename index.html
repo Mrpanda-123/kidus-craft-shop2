@@ -18,6 +18,23 @@
   </header>
 
   <main id="product-list" class="product-list"></main>
+<button id="buyChapa">Buy with Chapa</button>
+
+<script>
+  document.getElementById("buyChapa").addEventListener("click", async () => {
+    const response = await fetch("https://kidus-chapa-backend.onrender.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const data = await response.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert("Checkout failed: " + data.error);
+    }
+  });
+</script>
 
   <footer>
     <p>&copy; 2025 Kidus Craft Shop</p>
